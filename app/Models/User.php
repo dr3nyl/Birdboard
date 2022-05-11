@@ -17,6 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'owner_id');
+    }
+    
     protected $fillable = [
         'name',
         'email',
@@ -41,4 +47,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
 }
