@@ -12,7 +12,7 @@
             
             </p>
             
-            <a href="/projects/create" class="button">New Project</a>
+            <a href="{{ $project->path(). '/edit' }}" class="button">Edit Project</a>
 
         </div>
 
@@ -57,7 +57,18 @@
                     <h2 class="text-gray-400 font-normal text-lg mb-3">General Notes</h2>
 
 
-                    <textarea class="card w-full" style="min-height: 200px">Lorem ipsum dolor.</textarea>
+                    <form action="{{ $project->path() }}" method="post">
+                        @csrf
+                        @method('PATCH')
+
+                        <textarea 
+                            name="notes"
+                            class="card w-full mb-4" 
+                            style="min-height: 200px" 
+                            placeholder="Anything special that you want to make a note of??">{{ $project->notes }}</textarea>
+
+                        <button type="submit" class="button">Save</button>
+                    </form>
                 </div>
 
             </div>
