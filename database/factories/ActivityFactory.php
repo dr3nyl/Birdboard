@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TaskFactory extends Factory
+class ActivityFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,9 +15,7 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'body' => $this->faker->sentence(),
-            'project_id' => Project::factory(),
-            'completed' => false
+
         ];
     }
 }

@@ -12,7 +12,7 @@ use Tests\TestCase;
 class ManageProjectsTest extends TestCase
 {
     // use faker similar to factory, refreshdatabase to refresh every test run is execute
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -79,6 +79,19 @@ class ManageProjectsTest extends TestCase
         $this->assertDatabaseHas('projects', $attributes);
         
     }
+
+    /** @test */
+    public function a_user_can_update_a_general_notes()
+    {
+        $project = ProjectFactory::create();
+
+        $this->actingAs($project->owner)
+            ->patch($project->path(), $attributes = ['notes' => 'Changed']);
+
+        $this->assertDatabaseHas('projects', $attributes);
+        
+    }
+
 
     /** @test */
     public function a_user_can_view_their_project()

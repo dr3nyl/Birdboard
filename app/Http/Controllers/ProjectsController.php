@@ -52,9 +52,7 @@ class ProjectsController extends Controller
     {
         $this->authorize('update', $project);
 
-        $attributes = $this->validateRequest();
-
-        $project->update($attributes);
+        $project->update($this->validateRequest());
 
         return redirect($project->path());
 
@@ -66,9 +64,9 @@ class ProjectsController extends Controller
     protected function validateRequest()
     {
         return request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3'
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required',
+            'notes' => 'nullable'
             
         ]);
     }
