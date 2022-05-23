@@ -2,34 +2,42 @@
 
 namespace App\Models;
 
+use App\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory, RecordsActivity;
 
+    /**
+     * Attributes to guard against mass assignment.
+     */
     protected $guarded = [];
+
+    /**
+     * The relationship that should be touched on save.
+      */
     protected $touches = ['project'];
 
+    protected $casts = [
+        'completed' => 'boolean'
+    ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::created(function ($task){
-
-            $task->project->recordActivity('created_task');
-
-        });
-
-    }
+    protected static $recordableEvents = ['created', 'deleted'];
 
     public function complete()
     {
         $this->update(['completed' => true]);
         
-        $this->project->recordActivity('completed_task');
+        $this->recordActivity('completed_task');
+    }
+
+    public function incomplete()
+    {
+        $this->update(['completed' => false]);
+
+        $this->recordActivity('incompleted_task');
     }
 
 

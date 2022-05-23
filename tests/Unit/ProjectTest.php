@@ -10,7 +10,7 @@ use Tests\TestCase;
 class ProjectTest extends TestCase
 {
 
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     /**
      * A basic unit test example.

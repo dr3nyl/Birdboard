@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
+use App\RecordsActivity;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {   
-    use HasFactory;
+    use HasFactory, RecordsActivity;
 
     protected $guarded = [];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 
     public function path()
     {
@@ -32,16 +39,8 @@ class Project extends Model
         return $this->tasks()->create(compact('body'));
     }
 
-    public function recordActivity($type)
-    {
-        Activity::create([
-            'project_id' => $this->id,
-            'description' => $type
-        ]);
-    }
-
     public function activity()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)->latest();
     }
 }
