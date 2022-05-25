@@ -46,7 +46,7 @@ trait RecordsActivity
             # code...
         } 
            
-        return ['created', 'updated', 'deleted'];
+        return ['created', 'updated'];
 
     }
 
@@ -54,10 +54,21 @@ trait RecordsActivity
     {
 
         $this->activity()->create([
+
+            'user_id' => $this->activityOwner()->id,
             'description' => $description,
             'changes' => $this->activityChanges(),
             'project_id' => class_basename($this) == 'Project' ? $this->id : $this->project_id
+            
         ]);
+    }
+
+    protected function activityOwner()
+    {
+
+        $project = $this->project ?? $this;
+
+        return $project->owner;
     }
 
     public function activity()

@@ -118,7 +118,7 @@ class ProjectTasksTest extends TestCase
 
         $this->post($project->path(). '/tasks', ['body' => 'Test task'])->assertStatus(403);
 
-        $this->assertDatabaseMissing('tasks', ['body' => 'Test task']);
+        $this->assertDatabaseMissing('tasks', ['body' => 'Test tasks']);
         
     }
 

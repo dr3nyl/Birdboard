@@ -4,6 +4,17 @@
         <a href="{{ $project->path() }}">{{ $project->title }}</a>
     </h3>
 
-    <div class="text-gray-400">{{ \Illuminate\Support\Str::limit($project->description, 100) }}</div>
+    <div class="text-gray-400 mb-4">{{ \Illuminate\Support\Str::limit($project->description, 100) }}</div>
+
+
+    <footer>
+        <form class="text-right" action="{{ $project->path() }}" method="post">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit" class="text-sm">Delete</button>
+
+        </form>
+    </footer>
 
 </div>

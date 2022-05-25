@@ -12,7 +12,7 @@ use Tests\TestCase;
 class ManageProjectsTest extends TestCase
 {
     // use faker similar to factory, refreshdatabase to refresh every test run is execute
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -64,6 +64,52 @@ class ManageProjectsTest extends TestCase
             ->assertSee($attributes['description'])
             ->assertSee($attributes['notes']);
 
+    }
+
+    /** @test */
+    public function a_user_can_see_all_projects_they_have_been_invited_to_on_their_dashboard()
+    {
+
+        // create a project
+        $project = Project::factory()->create();
+
+        // invited to project not create by us
+        $project->invite($this->signIn());
+
+        // when visit dashboard, should see the project
+        $this->get('/projects')
+            ->assertSee($project->title);
+
+    }
+
+
+    /** @test */
+    public function unauthorized_users_cannot_delete_a_project()
+    {
+        
+        $project = ProjectFactory::create();
+
+        $this->delete($project->path())
+            ->assertRedirect('/login');
+
+        $this->signIn();
+
+        $this->delete($project->path())->assertStatus(403);
+        
+    }
+
+    /** @test */
+    public function a_user_can_delete_a_project()
+    {
+
+        $project = ProjectFactory::create();
+
+        $this->actingAs($project->owner)
+            ->delete($project->path())
+            ->assertRedirect('/projects');
+
+        $this->assertDatabaseMissing('projects', $project->only('id'));
+        
     }
 
     /** @test */
