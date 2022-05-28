@@ -12,7 +12,27 @@
             
             </p>
             
-            <a href="{{ $project->path(). '/edit' }}" class="button">Edit Project</a>
+            
+            <div class="flex items-center">
+
+                @foreach($project->members as $member)
+
+                    <img 
+                        class="rounded-full w-8 mr-2" 
+                        src="{{ gravatar_url($member->email) }}" 
+                        alt="{{ $member->name }}'s avatar">
+
+                @endforeach
+
+                <img 
+                    class="rounded-full w-8 mr-2" 
+                    src="{{ gravatar_url($project->owner->email) }}"
+                    alt="{{ $project->owner->name }}'s avatar">
+
+
+                <a href="{{ $project->path(). '/edit' }}" class="button ml-4">Edit Project</a>
+
+            </div>
 
         </div>
 
@@ -70,25 +90,31 @@
                         <button type="submit" class="button">Save</button>
                     </form>
                     
-                    @if($errors->any())
-                        <div class="field mt-6">
-                            @foreach($errors->all() as $error)
-                                <li class="text-sm text-red-500">{{ $error }}</li>
-                            @endforeach
-                        </div>
-                    @endif
+                    @include('error')
                     
                 </div>
 
             </div>
                 
+            <!-- left side bar section -->
             <div class="lg:w-1/4 px-3 lg:py-8">
-                
+
+                <!-- project info -->
                 @include('projects.card')
 
+                <!-- activity section -->
                 @include('projects.activity.card')
 
+                <!-- invite section -->
+
+                @can('manage', $project)
+
+                    @include('projects.invite')
+
+                @endcan
+
             </div>
+
         </div>
 
     </main>
