@@ -63,7 +63,7 @@
                                 @csrf
 
                                 <div class="flex">
-                                    <input type="text" class="w-full {{ $task->completed ? 'text-gray-400' : '' }}" name="body" value="{{ $task->body }}" >
+                                    <input type="text" class="w-full {{ $task->completed ? 'text-gray-400 line-through' : '' }}" name="body" value="{{ $task->body }}" >
                                     <input type="checkbox" class="" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }} >
                                 </div>
                             </form>
@@ -102,8 +102,7 @@
                 <!-- project info -->
                 @include('projects.card')
 
-                <!-- activity section -->
-                @include('projects.activity.card')
+                
 
                 <!-- invite section -->
 
@@ -113,6 +112,11 @@
 
                 @endcan
 
+            </div>
+
+            <div class="lg:w-1/4 px-3 lg:py-5">
+                <!-- activity section -->
+                @include('projects.activity.card')
             </div>
 
         </div>
