@@ -8,7 +8,7 @@
 
             <h2 class="text-gray-400 text-sm font-normal">My Projects</h2>
             
-            <a href="/projects/create" class="button">New Project</a>
+            <a href="/projects/create" class="button" @click.prevent="$modal.show('new-project')">New Project</a>
 
         </div>
 
@@ -29,5 +29,8 @@
         @endforelse
 
 </main>
+
+
+<new-project-modal></new-project-modal>
     
 @endsection
