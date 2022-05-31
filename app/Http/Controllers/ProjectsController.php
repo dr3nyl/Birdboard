@@ -39,6 +39,11 @@ class ProjectsController extends Controller
         // create
         $project = Project::create($attributes);
         
+        if (request()->wantsJson()) {
+            
+            return ['message' => $project->path()];
+        }
+
         // redirect
         return redirect($project->path());
     }
