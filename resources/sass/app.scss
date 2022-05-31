@@ -15,10 +15,32 @@
 .button
 {
     @apply bg-blue-400 text-white no-underline rounded-lg shadow-lg text-sm py-2 px-5;
+
+    // &.is-outlined{
+
+    //     @apply bg-white border border-accent text-accent;
+    // }
 }
 
 .card
 {
 
-    @apply bg-white p-5 rounded-lg shadow;
+    @apply bg-card p-5 rounded-lg shadow;
+}
+
+
+.theme-light {
+    --page-background-color: #F5F6F9;
+    --card-background-color: white;
+    --button-background-color: rgb(4, 207, 243);
+    --header-background-color: white;
+    --text-default-color: #222;
+}
+
+.theme-dark {
+    --page-background-color: #17181E;
+    --card-background-color: #1F2027;
+    --button-background-color: #59B6F9;
+    --header-background-color: #1F2027;
+    --text-default-color: #fff;
 }

@@ -5,7 +5,7 @@
     <ul class="text-xs">
         @foreach($project->activity as $activity)
 
-            <li class="{{ $loop->last ? '' : 'mb-1' }}">
+            <li class="text-default {{ $loop->last ? '' : 'mb-1' }}">
                 
                 @include("projects.activity.$activity->description")
                 

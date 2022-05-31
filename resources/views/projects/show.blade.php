@@ -6,7 +6,7 @@
 
         <div class="flex justify-between w-full items-end">
 
-            <p class="text-gray-400 text-sm font-normal">
+            <p class="text-default text-sm font-normal">
                 
                 <a href="/projects">My Projects</a> / {{ $project->title }}
             
@@ -46,12 +46,12 @@
 
                 <!-- Tasks -->
                 <div class="mb-8">
-                    <h2 class="text-gray-400 font-normal text-lg mb-3">Tasks</h2>
+                    <h2 class="text-default font-normal text-lg mb-3">Tasks</h2>
 
                     <div class="card mb-4">
                         <form action="{{ $project->path(). '/tasks' }}" method="post">
                             @csrf
-                            <input type="text" class="w-full" name="body" placeholder="Add a new task..">
+                            <input type="text" class="w-full bg-card text-default" name="body" placeholder="Add a new task..">
                         </form>
                     </div>
 
@@ -74,7 +74,7 @@
                 </div>
 
                 <div>
-                    <h2 class="text-gray-400 font-normal text-lg mb-3">General Notes</h2>
+                    <h2 class="text-default font-normal text-lg mb-3">General Notes</h2>
 
 
                     <form action="{{ $project->path() }}" method="post">
