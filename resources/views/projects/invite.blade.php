@@ -1,6 +1,6 @@
 <div class="card flex flex-col mt-3">
 
-    <h3 class="font-normal text-xl py-4 -ml-5 border-l-4 border-blue-900 pl-4 mb-3">
+    <h3 class="text-default font-normal text-xl py-4 -ml-5 border-l-4 border-blue-900 pl-4 mb-3">
         Invite a user
     </h3>
 

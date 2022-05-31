@@ -51,7 +51,7 @@
                     <div class="card mb-4">
                         <form action="{{ $project->path(). '/tasks' }}" method="post">
                             @csrf
-                            <input type="text" class="w-full" name="body" placeholder="Add a new task..">
+                            <input type="text" class="bg-card w-full" name="body" placeholder="Add a new task..">
                         </form>
                     </div>
 
@@ -63,7 +63,7 @@
                                 @csrf
 
                                 <div class="flex">
-                                    <input type="text" class="w-full {{ $task->completed ? 'text-gray-400 line-through' : '' }}" name="body" value="{{ $task->body }}" >
+                                    <input type="text" class="bg-card w-full {{ $task->completed ? 'text-gray-400 line-through' : 'text-default' }}" name="body" value="{{ $task->body }}" >
                                     <input type="checkbox" class="" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }} >
                                 </div>
                             </form>
@@ -83,7 +83,7 @@
 
                         <textarea 
                             name="notes"
-                            class="card w-full mb-4" 
+                            class="text-default card w-full mb-4" 
                             style="min-height: 200px" 
                             placeholder="Anything special that you want to make a note of??">{{ $project->notes }}</textarea>
 
@@ -101,8 +101,6 @@
 
                 <!-- project info -->
                 @include('projects.card')
-
-                
 
                 <!-- invite section -->
 
