@@ -39,6 +39,12 @@ class ProjectsController extends Controller
         // create
         $project = Project::create($attributes);
         
+        if (isset(request('tasks')[0]['body'])) {
+
+            foreach(request('tasks') as $task){
+                $project->addTask($task['body']);
+            }
+        }
         if (request()->wantsJson()) {
             
             return ['message' => $project->path()];

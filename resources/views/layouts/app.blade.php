@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,6 +20,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    
 </head>
 <body class="theme-light bg-page">
     <div id="app">
@@ -61,20 +65,23 @@
                                 @endif
                             @else
 
-                            <theme-switcher></theme-switcher>
+                                <!-- Vue theme switcher -->
+                                <theme-switcher></theme-switcher> 
 
-                                <a 
-                                    id="navbarDropdown" 
-                                    class="nav-link dropdown-toggle" 
-                                    href="#" 
-                                    role="button" 
-                                    data-bs-toggle="dropdown" 
-                                    aria-haspopup="true" 
-                                    aria-expanded="false" 
-                                    v-pre>
+                                    <div 
+                                            id="navbarDropdown" 
+                                            class="text-default nav-link dropdown-toggle" 
+                                            href="#" 
+                                            role="button" 
+                                            data-bs-toggle="dropdown" 
+                                            aria-haspopup="true" 
+                                            aria-expanded="false" 
+                                            v-pre>
 
-                                    {{ Auth::user()->name }}
-                                </a>
+                                            {{ Auth::user()->name }}
+                                        
+                                    
+                                    </div>
                             @endguest
                         </div>
                     </div>
