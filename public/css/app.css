@@ -684,9 +684,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-header {
   background-color: var(--header-background-color);
 }
-.fill-current {
-  fill: currentColor;
-}
 .p-6 {
   padding: 1.5rem;
 }

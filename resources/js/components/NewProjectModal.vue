@@ -50,6 +50,7 @@
                             class="border border-muted-light p-2 text-xs block w-full rounded mb-2" 
                             placeholder="task 1" 
                             v-for="task in form.tasks"
+                            :key="task.id"
                             v-model="task.body">
 
                     </div>
