@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::get('/allprojects', function(){
+
+   return Project::all();
+
+});
+
+Route::post('/createproject', function(){
+
+   $attributes = request()->validate([
+        'owner_id' => 'required',
+        'title' => 'required',
+        'description' => 'required',
+        'notes' => 'max:250'
+    ]);
+
+    Project::create($attributes);
+
+
 });
