@@ -28,6 +28,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('new-project-modal', require('./components/NewProjectModal.vue').default);
 Vue.component('theme-switcher', require('./components/ThemeSwitcher.vue').default);
 
+Vue.component('task-section', require('./components/projectTask/TaskSection.vue').default);
+Vue.component('create-new-task', require('./components/projectTask/CreateNewTask.vue').default);
+Vue.component('task-list', require('./components/projectTask/TaskList.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

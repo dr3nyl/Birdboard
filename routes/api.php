@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectTasksController;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,6 +27,8 @@ Route::get('/allprojects', function(){
    return Project::all();
 
 });
+
+Route::get('tasks/{id}', [ProjectTasksController::class, 'index']);
 
 Route::post('/createproject', function(){
 

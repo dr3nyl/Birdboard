@@ -48,28 +48,7 @@
                 <div class="mb-8">
                     <h2 class="text-default font-normal text-lg mb-3">Tasks</h2>
 
-                    <div class="card mb-4">
-                        <form action="{{ $project->path(). '/tasks' }}" method="post">
-                            @csrf
-                            <input type="text" class="bg-card w-full" name="body" placeholder="Add a new task..">
-                        </form>
-                    </div>
-
-                    @foreach($project->tasks as $task)
-
-                        <div class="card mb-3">
-                            <form action="{{ $project->path(). '/tasks/'. $task->id }}" method="post">
-                                @method('PATCH')
-                                @csrf
-
-                                <div class="flex">
-                                    <input type="text" class="bg-card w-full {{ $task->completed ? 'text-gray-400 line-through' : 'text-default' }}" name="body" value="{{ $task->body }}" >
-                                    <input type="checkbox" class="" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }} >
-                                </div>
-                            </form>
-                        </div>
-
-                    @endforeach
+                    <task-section :project="{{ $project }}"></task-section>
 
                 </div>
 
